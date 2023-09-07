@@ -42,13 +42,32 @@ def linear_search(list_of_items :list, item):
         return -1
 
 
+# Exercise 5: Remove duplicates from a list of names
+# Input: An unordened list (type: list) containing string elements
+# Output: A list (type: list) with the same strings but with duplicates removed
+def remove_duplicates(list_of_names :list):
+    # Check validity of input
+    if len(list_of_names) < 2:
+        return ValueError('Invalid argument: list_of_int must be non-empty. Only int allowed.')
+    for item in list_of_names:
+        if type(item) != str:
+            return ValueError('Invalid argument: list_of_int must be non-empty. Only int allowed.')
+    
+    # A set automatically removes all duplicates (it also orders it on alphabetical order -> much fun)
+    duplicateless_list = [*set(list_of_names)]
+    return duplicateless_list
+
+
+
 # Main script, call the file directly and this is run
 if __name__ == "__main__":
     for i in range(1, 13):
         print(month_name_alt(i))
 
-    items_list = ["Hey", "there", "I", "did", "not", "see", "you", "there!", 
-                  "Let", "me", "tell", "ya", "a", "secret:", 93, "'vo"]
+    items_list = ["Hey", "there", "I", "did", "not", "see", "you", "there", "!", 
+                  "Let", "me", "tell", "you", "a", "secret:", 93, "'vo"]
     print(linear_search(items_list, 93))
+    items_list.remove(93)
+    print(remove_duplicates(items_list))
 
 
