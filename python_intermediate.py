@@ -1,14 +1,14 @@
 # Python file containing all the intermediate level exercises from BIT module 1
 # Course code: 202001061
-# Author: Timo van Beelen
-# Date: 2023/09/06
+# Author: Timo van Beelen & Alfonso Capitano
+# Date: 2023/09/11
 
 # Exercise 1: Month name by its number using dictionairies
 # Input: The number of the month (as an integer)
 # Output: The name of the month
 def month_name_alt(month_number :int):
     # Check if the input is correct
-    if type(month_number) != int or month_number > 12 or month_number < 1:
+    if type(month_number) is not int or month_number > 12 or month_number < 1:
         return ValueError('Invalid input')
 
     # Define the dictionairy, linking the names to its number
@@ -48,13 +48,15 @@ def linear_search(list_of_items :list, item):
 def remove_duplicates(list_of_names :list):
     # Check validity of input
     if len(list_of_names) < 2:
-        return ValueError('Invalid argument: list_of_names must contain only string (len >= 2)')
+        print('Invalid argument: list_of_names must contain only string (len >= 2)')
+        return None
     for item in list_of_names:
-        if type(item) != str:
-            return ValueError('Invalid argument: list_of_names must contain only string (len >= 2).')
+        if not isinstance(item, str):
+            print('Invalid argument: list_of_names must contain only string (len >= 2).')
+            return None
     
-    # A set automatically removes all duplicates (it also orders it on alphabetical order -> much fun)
-    duplicateless_list = [*set(list_of_names)]
+    # A set automatically removes all duplicates
+    duplicateless_list = sorted(set(list_of_names))
     return duplicateless_list
 
 
@@ -64,10 +66,12 @@ def remove_duplicates(list_of_names :list):
 def get_least_vowels_word(list_of_words):
     # Check the validity of the input
     if len(list_of_words) < 2:
-        return ValueError('Invalid Argument. List length must be >= 2, only strings allowed.')
+        print('Invalid Argument. List length must be >= 2, only strings allowed.')
+        return None
     for item in list_of_words:
-        if type(item) != str:
-            return ValueError('Invalid Argument. List length must be >= 2, only strings allowed.')
+        if not isinstance(item, str):
+            print('Invalid Argument. List length must be >= 2, only strings allowed.')
+            return None
     
     
     word_with_least_vowels = list_of_words[0] # Set the word with the least vowels to the first of the list to start
@@ -90,8 +94,9 @@ def get_least_vowels_word(list_of_words):
 # Output: The same string with each word starting with a capital letter
 def capitalize_words(sentence :str):
     # Check validity of the input
-    if type(sentence) != str or len(sentence) < 1:
-        return ValueError('Invalid Argument. It must be a non-empty string.')
+    if not isinstance(sentence, str) or len(sentence) < 1:
+        print('Invalid Argument. It must be a non-empty string.')
+        return None
 
     return sentence.title()
 
@@ -106,7 +111,7 @@ if __name__ == "__main__":
     print(linear_search(items_list, 93))
     
     items_list.remove(93)
-    print(remove_duplicates(items_list))
+    print(remove_duplicates(["a", "b", "c", "c", "d", "c", "e"]))
     print(get_least_vowels_word(items_list))
 
 
