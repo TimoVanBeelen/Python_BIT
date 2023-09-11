@@ -1,5 +1,5 @@
 # Python file containing all the intermediate level exercises from BIT module 1
-# Course code:
+# Course code: 202001061
 # Author: Timo van Beelen
 # Date: 2023/09/06
 
@@ -48,15 +48,52 @@ def linear_search(list_of_items :list, item):
 def remove_duplicates(list_of_names :list):
     # Check validity of input
     if len(list_of_names) < 2:
-        return ValueError('Invalid argument: list_of_int must be non-empty. Only int allowed.')
+        return ValueError('Invalid argument: list_of_names must contain only string (len >= 2)')
     for item in list_of_names:
         if type(item) != str:
-            return ValueError('Invalid argument: list_of_int must be non-empty. Only int allowed.')
+            return ValueError('Invalid argument: list_of_names must contain only string (len >= 2).')
     
     # A set automatically removes all duplicates (it also orders it on alphabetical order -> much fun)
     duplicateless_list = [*set(list_of_names)]
     return duplicateless_list
 
+
+# Exercise 8: Return a tuple with the word with the least vowels from a list of words and how many vowels that word has
+# Input: A list (type: list) of words (type: string)
+# Output: A tuple containing the word (type: string) and the amount of vowels (type integer)
+def get_least_vowels_word(list_of_words):
+    # Check the validity of the input
+    if len(list_of_words) < 2:
+        return ValueError('Invalid Argument. List length must be >= 2, only strings allowed.')
+    for item in list_of_words:
+        if type(item) != str:
+            return ValueError('Invalid Argument. List length must be >= 2, only strings allowed.')
+    
+    
+    word_with_least_vowels = list_of_words[0] # Set the word with the least vowels to the first of the list to start
+    least_vowels_amount = 10
+    for word in list_of_words:
+        vowels_amount = 0
+        for char in ['A', 'E', 'Y', 'U', 'I', 'O', 'a', 'e', 'y', 'u', 'i', 'o']:   #"AEYUIOaeyuio"
+            vowels_amount += word.count(char)
+        
+        # Check if the count is lower than the lowest to that point and change accordingly
+        if vowels_amount < least_vowels_amount:
+            least_vowels_amount = vowels_amount
+            word_with_least_vowels = word
+
+    return (word_with_least_vowels, least_vowels_amount)
+                
+
+# Exercise 9: Capitalize the first letter of each word in a sentence
+# Input: A string
+# Output: The same string with each word starting with a capital letter
+def capitalize_words(sentence :str):
+    # Check validity of the input
+    if type(sentence) != str or len(sentence) < 1:
+        return ValueError('Invalid Argument. It must be a non-empty string.')
+
+    return sentence.title()
 
 
 # Main script, call the file directly and this is run
@@ -67,7 +104,10 @@ if __name__ == "__main__":
     items_list = ["Hey", "there", "I", "did", "not", "see", "you", "there", "!", 
                   "Let", "me", "tell", "you", "a", "secret:", 93, "'vo"]
     print(linear_search(items_list, 93))
+    
     items_list.remove(93)
     print(remove_duplicates(items_list))
+    print(get_least_vowels_word(items_list))
+
 
 
