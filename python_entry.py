@@ -32,36 +32,37 @@ def is_the_same(message1, message2):
 		if message1.casefold() == message2.casefold():
 			return True
 		else: return False
-	else: break
+	
+	return None
 #7
 def month_name(month_number):
 	if isinstance(month_number, int) and (1 <= month_number <= 12):
-		switch(month_number) {
-		case "1":
-			return "January"
-		case "2":
-			return "February"
-		case "3":
-			return "March"
-		case "4":
-			return "April"
-		case "5":
-			return "May"
-		case "6":
-			return "June"
-		case "7":
-			return "July"
-		case "8":
-			return "August"
-		case "9":
-			return "September"
-		case "10":
-			return "October"
-		case "11":
-			return "November"
-		case "12":
-			return "December"
-		}
+		match month_number:
+			case "1":
+				return "January"
+			case "2":
+				return "February"
+			case "3":
+				return "March"
+			case "4":
+				return "April"
+			case "5":
+				return "May"
+			case "6":
+				return "June"
+			case "7":
+				return "July"
+			case "8":
+				return "August"
+			case "9":
+				return "September"
+			case "10":
+				return "October"
+			case "11":
+				return "November"
+			case "12":
+				return "December"
+	
 	else: print("Invalid argument. The month_number must be an int value between 1 and 12")
 #8
 

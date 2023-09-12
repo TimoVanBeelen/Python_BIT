@@ -55,8 +55,11 @@ def remove_duplicates(list_of_names :list):
             print('Invalid argument: list_of_names must contain only string (len >= 2).')
             return None
     
-    # A set automatically removes all duplicates
-    duplicateless_list = sorted(set(list_of_names))
+    duplicateless_list = []
+    for item in list_of_names:
+        if item not in duplicateless_list:
+            duplicateless_list.append(item)
+
     return duplicateless_list
 
 
@@ -111,7 +114,7 @@ if __name__ == "__main__":
     print(linear_search(items_list, 93))
     
     items_list.remove(93)
-    print(remove_duplicates(["a", "b", "c", "c", "d", "c", "e"]))
+    print(remove_duplicates(["there", "are", "are", "are", "duplicates", "here", "and", "there"]))
     print(get_least_vowels_word(items_list))
 
 
