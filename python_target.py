@@ -5,6 +5,7 @@
 
 from collections import defaultdict
 from pprint import pprint
+import random
 
 # Validation script
 def validation(_item=None, _list=None, min_length=1, _type=None):
@@ -125,7 +126,7 @@ def amplitude_temperature(cities_temperature :dict):
     
 
 # Exercise 5: A function that returns the count of even numbers in a list of ints
-def count_evens(list_of_ints :int):
+def count_evens(list_of_ints :list):
     # Validation
     if not validation(_list=list_of_ints, _type=int):
         print('Invalid argument. Check specifications.')
@@ -136,6 +137,29 @@ def count_evens(list_of_ints :int):
         if _item%2==0: count += 1
     
     return count
+
+
+# Exercise 6: take a list of ints and return the mean average of the values, ignoring the highest and lowest in the list. The list must be at least of length 4
+def centered_average(list_of_ints :list):
+    if not validation(_list=list_of_ints, _type=int, min_length=4):
+        print('Invalid argument. Check specifications.')
+        return None
+    
+    list_of_ints.remove(max(list_of_ints))
+    list_of_ints.remove(min(list_of_ints))
+
+    return sum(list_of_ints)/len(list_of_ints)
+
+
+# Exercise 7: Take a list of integers and return True if the list contains at least one element with value 2 followed by another element with value 2
+def has22(list_of_ints :list):
+    prev_item = 0   # Set a variable to recall the last item value
+    for _item in list_of_ints:
+        if _item == 2 and prev_item == 2:
+            return True
+        prev_item = _item
+        
+    return False
 
 
 # Main script, add test functions here
@@ -182,4 +206,8 @@ if __name__ == "__main__":
     pprint(amplitude_temperature(dataset))
 
     int_list = [_item for _item in range(0, 50)]
+    
     print(count_evens(int_list))
+    random_int_list = random.sample(int_list, len(int_list))
+    print(centered_average(random_int_list))
+    print(has22([1, 5, 9, 1, 2, 1, 7, 6, 2, 2, 98]))
