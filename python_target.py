@@ -7,7 +7,7 @@ from collections import defaultdict
 from pprint import pprint
 
 # Validation script
-def validation(_item, _list=None, min_length=1, _type=None):
+def validation(_item=None, _list=None, min_length=1, _type=None):
     if _list != None and len(_list) >= min_length:
         for val in _list:
             if type(val) is _type or _type is None: return True
@@ -82,7 +82,7 @@ def binary_search(ordered_list :list, item_to_search):
     # React to the catch statement that the first element cannot be reached
     if ordered_list[0] is item_to_search: return 0
 
-    # Assume to search through the entire list
+    # Assume to search througint_listh the entire list
     low_bound = 0
     high_bound = len(ordered_list)
     while low_bound<high_bound-1:
@@ -131,8 +131,11 @@ def count_evens(list_of_ints :int):
         print('Invalid argument. Check specifications.')
         return None
     
+    count=0
     for _item in list_of_ints:
-        
+        if _item%2==0: count += 1
+    
+    return count
 
 
 # Main script, add test functions here
@@ -178,3 +181,5 @@ if __name__ == "__main__":
     }
     pprint(amplitude_temperature(dataset))
 
+    int_list = [_item for _item in range(0, 50)]
+    print(count_evens(int_list))
