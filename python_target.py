@@ -6,6 +6,18 @@
 from collections import defaultdict
 from pprint import pprint
 
+# Validation script
+def validation(_item, _list=None, min_length=1, _type=None):
+    if _list != None and len(_list) >= min_length:
+        for val in _list:
+            if type(val) is _type or _type is None: return True
+            else: return False
+
+    elif type(_item) is _type: return True
+
+    else: return False
+
+
 
 # Exercise 1: calculate the average value of a key in a dictionary. The values for a certain key are given in a list
 # Input: A dictionary with a key and a list of values (type: list with float)
@@ -73,7 +85,6 @@ def binary_search(ordered_list :list, item_to_search):
     # Assume to search through the entire list
     low_bound = 0
     high_bound = len(ordered_list)
-    last_middle = 0
     while low_bound<high_bound-1:
         middle = (low_bound+high_bound)//2
 
@@ -103,8 +114,25 @@ def amplitude_temperature(cities_temperature :dict):
             if not isinstance(value, float):
                 print('Invalid argument. Check specifications.')
                 return None
-
     
+    amplitude_dict = defaultdict(int)
+    for key in cities_temperature:
+        temperature_list = cities_temperature[key]
+        amplitude_dict[key] = max(temperature_list) - min(temperature_list)
+        amplitude_dict[key] = round(amplitude_dict[key], 1)
+
+    return amplitude_dict
+    
+
+# Exercise 5: A function that returns the count of even numbers in a list of ints
+def count_evens(list_of_ints :int):
+    # Validation
+    if not validation(_list=list_of_ints, _type=int):
+        print('Invalid argument. Check specifications.')
+        return None
+    
+    for _item in list_of_ints:
+        
 
 
 # Main script, add test functions here
@@ -126,47 +154,27 @@ if __name__ == "__main__":
 
     text = "This is a sample text. This text contains sample words."
     stop_words = ["is", "a", "this"]
-
     print(count_word_occurences(text=text, stop_words=stop_words))
 
     dataset = [
-        "almond",
-        "apple",
-        "apricot",
-        "banana",
-        "blueberry",
-        "cantaloupe",
-        "cherry",
-        "coconut",
-        "cranberry",
-        "date",
-        "dragonfruit",
-        "elderberry",
-        "fig",
-        "grape",
-        "grapefruit",
-        "guava",
-        "honeydew",
-        "kiwi",
-        "lemon",
-        "lime",
-        "mango",
-        "nectarine",
-        "orange",
-        "papaya",
-        "peach",
-        "pear",
-        "pineapple",
-        "plum",
-        "pomegranate",
-        "quince",
-        "raspberry",
-        "strawberry",
-        "tomato",
-        "watermelon",
-        # ... Add more words here ...
-        "zebra"
+        "almond", "apple", "apricot", "banana", "blueberry", "cantaloupe", "cherry", "coconut", "cranberry", "date", "dragonfruit",
+        "elderberry", "fig", "grape", "grapefruit", "guava", "honeydew", "kiwi", "lemon", "lime",
+        "mango", "nectarine", "orange", "papaya", "peach", "pear", "pineapple", "plum", "pomegranate", "quince", "raspberry", "strawberry", "tomato", 
+        "watermelon", "zebra"
     ]
-
-
     print(binary_search(dataset, 'tomato'))
+
+    dataset = {
+        'Alice': [12.34, 56.78, 45.67, 89.01, 23.45],
+        'Bob': [34.56, 78.90, 10.11, 67.89, 98.76],
+        'Charlie': [54.32, 21.43, 76.54, 32.10, 87.65],
+        'David': [45.67, 89.01, 12.34, 56.78, 23.45],
+        'Eve': [67.89, 98.76, 34.56, 78.90, 10.11],
+        'Frank': [21.43, 76.54, 54.32, 32.10, 87.65],
+        'Grace': [23.45, 12.34, 45.67, 89.01, 56.78],
+        'Hannah': [10.11, 67.89, 67.89, 98.76, 34.56],
+        'Ivy': [98.76, 10.11, 21.43, 76.54, 54.32],
+        'Jack': [32.10, 87.65, 23.45, 12.34, 45.67]
+    }
+    pprint(amplitude_temperature(dataset))
+
