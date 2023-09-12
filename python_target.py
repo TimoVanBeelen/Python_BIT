@@ -4,6 +4,7 @@
 # Date: 2023/09/11
 
 from collections import defaultdict
+from pprint import pprint
 
 
 # Exercise 1: calculate the average value of a key in a dictionary. The values for a certain key are given in a list
@@ -32,7 +33,7 @@ def calculate_average_price(products_dict :dict):
 # Output: A dictionary with as key the word and as value the amount of occurences
 def count_word_occurences(text :str, stop_words :list):
     # Validation
-    if not isinstance(text, str) or len(text) is 0 or len(stop_words) is 0:
+    if not isinstance(text, str) or len(text) == 0 or len(stop_words) == 0:
         print('Invalid input')
         return None
     for words in stop_words:
@@ -58,16 +59,34 @@ def count_word_occurences(text :str, stop_words :list):
 # Output: The index of the item in the list or -1 for when it is not found
 def binary_search(ordered_list :list, item_to_search):
     # Validation
-    if len(ordered_list) is 0:
+    if len(ordered_list) == 0:
         print('Invalid Argument: ordered_list must be non-empty')
         return None
     for item in ordered_list:
         if type(item) is not type(ordered_list[0]):
-            print('Type Mismatch: not all items of ’ordered_list’ have the same type of ’item_to_search')
+            print('Type Mismatch: not all items of `ordered_list` have the same type of `item_to_search`')
             return None
     
+    # React to the catch statement that the first element cannot be reached
+    if ordered_list[0] is item_to_search: return 0
+
+    # Assume to search through the entire list
+    low_bound = 0
+    high_bound = len(ordered_list)
+    last_middle = 0
+    while low_bound<high_bound-1:
+        middle = (low_bound+high_bound)//2
+
+        if ordered_list[middle] is item_to_search:
+            return middle   # Middle is the index of the item in the list
+
+        # Otherwise adapt the low or high bound of the search
+        if ordered_list[middle] < item_to_search:
+            low_bound = middle
+        else:
+            high_bound = middle
     
-    return 
+    return -1 # Return -1 when the item is not found
 
 
 if __name__ == "__main__":
@@ -84,10 +103,51 @@ if __name__ == "__main__":
         "Vino Bianco/Wit Wijn/White Wine (Greco di Tufo)": [14.95, 13.99, 14.18, 16.69],
         "Caffe Lavazza (Black) 250g": [2.79, 3.09, 3.39, 2.79]
     }
-    print(calculate_average_price(pasta_al_salmone))
+    pprint(calculate_average_price(pasta_al_salmone))
 
     text = "This is a sample text. This text contains sample words."
     stop_words = ["is", "a", "this"]
 
     print(count_word_occurences(text=text, stop_words=stop_words))
 
+    dataset = [
+        "almond",
+        "apple",
+        "apricot",
+        "banana",
+        "blueberry",
+        "cantaloupe",
+        "cherry",
+        "coconut",
+        "cranberry",
+        "date",
+        "dragonfruit",
+        "elderberry",
+        "fig",
+        "grape",
+        "grapefruit",
+        "guava",
+        "honeydew",
+        "kiwi",
+        "lemon",
+        "lime",
+        "mango",
+        "nectarine",
+        "orange",
+        "papaya",
+        "peach",
+        "pear",
+        "pineapple",
+        "plum",
+        "pomegranate",
+        "quince",
+        "raspberry",
+        "strawberry",
+        "tomato",
+        "watermelon",
+        # ... Add more words here ...
+        "zebra"
+    ]
+
+
+    print(binary_search(dataset, 'tomato'))
