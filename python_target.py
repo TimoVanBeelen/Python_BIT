@@ -89,6 +89,25 @@ def binary_search(ordered_list :list, item_to_search):
     return -1 # Return -1 when the item is not found
 
 
+# Exercise 4: Takes a dictionary with as key a string representing the name of a city and as value a list of tempratures as floats observed in the respective city over a period of time. The function should calculate the amplitude of temperature variation and return a dict with as key the city name and as value the amplitude (max difference) between temperatures in 1 digit decimals
+def amplitude_temperature(cities_temperature :dict):
+    # Validation
+    if len(cities_temperature) == 0: 
+        print('Invalid argument. Check specifications.')
+        return None
+    for key in cities_temperature:
+        if not isinstance(key, str) and len(cities_temperature[key]) == 0:
+            print('Invalid argument. Check specifications.')
+            return None
+        for value in cities_temperature[key]:
+            if not isinstance(value, float):
+                print('Invalid argument. Check specifications.')
+                return None
+
+    
+
+
+# Main script, add test functions here
 if __name__ == "__main__":
     pasta_al_salmone ={
         "Pomodorini/Tomatten/Tomatoes 250g pack": [1.99, 2.49, 1.19, 1.99],
