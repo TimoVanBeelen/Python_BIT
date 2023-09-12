@@ -6,15 +6,16 @@
 from collections import defaultdict
 from pprint import pprint
 import random
+from statistics import mean
 
 # Validation script
 def validation(_item=None, _list=None, min_length=1, _type=None):
     if _list != None and len(_list) >= min_length:
         for val in _list:
-            if type(val) is _type or _type is None: return True
-            else: return False
+            if not (isinstance(val, _type) or _type is None): return False
+        return True
 
-    if type(_item) is _type: return True
+    if isinstance(_item, _type): return True
 
     return False
 
@@ -23,7 +24,7 @@ def validation(_item=None, _list=None, min_length=1, _type=None):
 # Exercise 1: calculate the average value of a key in a dictionary. The values for a certain key are given in a list
 # Input: A dictionary with a key and a list of values (type: list with float)
 # Output: A dictionary with a key and the average of the list as value (type: float)
-def calculate_average_price(products_dict :dict):
+def calculate_average_price(products_dict):
     for item in products_dict:
         total_of_values = 0           
         for value in products_dict[item]:
@@ -47,16 +48,19 @@ def calculate_average_price(products_dict :dict):
 def count_word_occurrences(text :str, stop_words :list):
     # Validation
     if not isinstance(text, str) or len(text) == 0 or len(stop_words) == 0:
-        print('argument text must be a non-empty string')
+        print('Argument text must be a non-empty string')
         return None
     for words in stop_words:
         if not isinstance(words, str):
-            print('argument text must be a non-empty string')
+            print('Argument text must be a non-empty string')
             return None
 
     occurence_dict = defaultdict(int)
     text = text.replace('.', '')
     list_of_words = text.split(' ')
+
+    # Convert all stop words to lower case
+    for word in stop_words: stop_words[stop_words.index(word)] = word.lower()
 
     for word in list_of_words:
         # If the word is in the list of stop words, continue to the next instance
@@ -129,10 +133,10 @@ def amplitude_temperature(cities_temperature :dict):
 # Exercise 5: A function that returns the count of even numbers in a list of ints
 def count_evens(list_of_ints :list):
     # Validation
-    if not validation(_list=list_of_ints, _type=int):
+    if not validation(_list=list_of_ints, min_length=1, _type=int):
         print('Invalid argument. Check specifications.')
         return None
-    
+
     count=0
     for _item in list_of_ints:
         if _item%2==0: count += 1
@@ -201,7 +205,7 @@ if __name__ == "__main__":
 
     text = "This is a sample text. This text contains sample words."
     stop_words = ["is", "a", "this"]
-    print(count_word_occurrences("test", ["and", 1]))
+    #print(count_word_occurrences("", ["test"]))
 
     dataset = [
         "almond", "apple", "apricot", "banana", "blueberry", "cantaloupe", "cherry", "coconut", "cranberry", "date", "dragonfruit",
@@ -227,8 +231,10 @@ if __name__ == "__main__":
 
     int_list = [_item for _item in range(0, 50)]
     
-    print(count_evens(int_list))
+    print(count_evens([120, 158, 264, 'a', 3143, 7777]))
     random_int_list = random.sample(int_list, len(int_list))
-    #print(centered_average(random_int_list))
+    integer_list = [12, 34, 56, 78, 90, 23, 45, 67, 89, 10, 32, 54, 76, 98, 21]
+    print(centered_average(integer_list))
+    print(mean(integer_list))
     #print(has22([1, 5, 9, 1, 2, 1, 7, 6, 2, 2, 98]))
-    print(sum_of_diff([1, 5, 9, 1, 2, 1, 7, 6, 2, 2, 98]))
+    #print(sum_of_diff([1, 5, 9, 1, 2, 1, 7, 6, 2, 2, 98]))

@@ -16,6 +16,7 @@ def fancy_hello_world():
 /_/   \_\____/ \____|___|___|
 """)
 #4
+# Timo: Laatste lijn (de print) is unreachable -> vs code werkt dan toch iets makkelijker dan terminals en standaard text editors
 def grade_is_valid(grade):
 	if 1 >= grade <= 10:
 		return True
@@ -27,6 +28,7 @@ def test_is_valid(test):
 	if isinstance(test,int) and (1 >= test <= 3):
 		return True
 #6
+# Timo: eens, maar vervangen van '==' met 'is' zou meer "pythonic" zijn
 def is_the_same(message1, message2):
 	if isinstance(message1, str) and isinstance(message2, str):
 		if message1.casefold() == message2.casefold():
@@ -35,6 +37,7 @@ def is_the_same(message1, message2):
 	
 	return None
 #7
+# Alfonso, kijk hier nog even naar -> iets met de variable type die je er in gooit bij de case statements
 def month_name(month_number):
 	if isinstance(month_number, int) and (1 <= month_number <= 12):
 		match month_number:
@@ -68,4 +71,3 @@ def month_name(month_number):
 
 
 print(month_name(2))
-
