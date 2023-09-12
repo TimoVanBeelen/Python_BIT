@@ -44,7 +44,7 @@ def calculate_average_price(products_dict :dict):
 # Exercise 2: Take in a text and count the amount a word occurs in the text, except stop words. It should be case insensitive
 # Input: text (type str) with words and a list of stop words
 # Output: A dictionary with as key the word and as value the amount of occurences
-def count_word_occurences(text :str, stop_words :list):
+def count_word_occurrences(text :str, stop_words :list):
     # Validation
     if not isinstance(text, str) or len(text) == 0 or len(stop_words) == 0:
         print('Invalid input')
@@ -108,14 +108,14 @@ def amplitude_temperature(cities_temperature :dict):
         print('Invalid argument. Check specifications.')
         return None
     for key in cities_temperature:
-        if not isinstance(key, str) and len(cities_temperature[key]) == 0:
+        if not isinstance(key, str) or len(cities_temperature[key]) == 0:
             print('Invalid argument. Check specifications.')
             return None
         for value in cities_temperature[key]:
             if not isinstance(value, float):
                 print('Invalid argument. Check specifications.')
                 return None
-    
+            
     amplitude_dict = defaultdict(int)
     for key in cities_temperature:
         temperature_list = cities_temperature[key]
@@ -162,6 +162,25 @@ def has22(list_of_ints :list):
     return False
 
 
+# Exercise 8: Take a list of positive numbers and return the sum of the difference between all pairs of consecutive elements
+def sum_of_diff(list_of_numbers):
+    count = 0
+    if len(list_of_numbers)%2 == 1:
+        list_of_numbers = list_of_numbers[:-1]
+
+    odd_index = False
+    for num in list_of_numbers:
+        # Add or subtract on whether it is at an odd or even index in the list
+        if odd_index:
+            count += num
+        else: 
+            count -= num
+
+        odd_index = not odd_index  # Change the index bool
+
+    return count
+
+
 # Main script, add test functions here
 if __name__ == "__main__":
     pasta_al_salmone ={
@@ -177,11 +196,11 @@ if __name__ == "__main__":
         "Vino Bianco/Wit Wijn/White Wine (Greco di Tufo)": [14.95, 13.99, 14.18, 16.69],
         "Caffe Lavazza (Black) 250g": [2.79, 3.09, 3.39, 2.79]
     }
-    pprint(calculate_average_price(pasta_al_salmone))
+    #pprint(calculate_average_price(pasta_al_salmone))
 
     text = "This is a sample text. This text contains sample words."
     stop_words = ["is", "a", "this"]
-    print(count_word_occurences(text=text, stop_words=stop_words))
+    #print(count_word_occurrences(text=text, stop_words=stop_words))
 
     dataset = [
         "almond", "apple", "apricot", "banana", "blueberry", "cantaloupe", "cherry", "coconut", "cranberry", "date", "dragonfruit",
@@ -189,10 +208,10 @@ if __name__ == "__main__":
         "mango", "nectarine", "orange", "papaya", "peach", "pear", "pineapple", "plum", "pomegranate", "quince", "raspberry", "strawberry", "tomato", 
         "watermelon", "zebra"
     ]
-    print(binary_search(dataset, 'tomato'))
+    #print(binary_search(dataset, 'tomato'))
 
     dataset = {
-        'Alice': [12.34, 56.78, 45.67, 89.01, 23.45],
+        123: [12.34, 56.78, 45.67, 89.01, 23.45],
         'Bob': [34.56, 78.90, 10.11, 67.89, 98.76],
         'Charlie': [54.32, 21.43, 76.54, 32.10, 87.65],
         'David': [45.67, 89.01, 12.34, 56.78, 23.45],
@@ -203,11 +222,12 @@ if __name__ == "__main__":
         'Ivy': [98.76, 10.11, 21.43, 76.54, 54.32],
         'Jack': [32.10, 87.65, 23.45, 12.34, 45.67]
     }
-    pprint(amplitude_temperature(dataset))
+    #pprint(amplitude_temperature(dataset))
 
     int_list = [_item for _item in range(0, 50)]
     
-    print(count_evens(int_list))
+    #print(count_evens(int_list))
     random_int_list = random.sample(int_list, len(int_list))
-    print(centered_average(random_int_list))
-    print(has22([1, 5, 9, 1, 2, 1, 7, 6, 2, 2, 98]))
+    #print(centered_average(random_int_list))
+    #print(has22([1, 5, 9, 1, 2, 1, 7, 6, 2, 2, 98]))
+    print(sum_of_diff([1, 5, 9, 1, 2, 1, 7, 6, 2, 2, 98]))
