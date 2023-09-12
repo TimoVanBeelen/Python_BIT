@@ -14,9 +14,9 @@ def validation(_item=None, _list=None, min_length=1, _type=None):
             if type(val) is _type or _type is None: return True
             else: return False
 
-    elif type(_item) is _type: return True
+    if type(_item) is _type: return True
 
-    else: return False
+    return False
 
 
 
@@ -47,21 +47,22 @@ def calculate_average_price(products_dict :dict):
 def count_word_occurrences(text :str, stop_words :list):
     # Validation
     if not isinstance(text, str) or len(text) == 0 or len(stop_words) == 0:
-        print('Invalid input')
+        print('argument text must be a non-empty string')
         return None
     for words in stop_words:
         if not isinstance(words, str):
-            print('Invalid input')
+            print('argument text must be a non-empty string')
             return None
 
     occurence_dict = defaultdict(int)
     text = text.replace('.', '')
     list_of_words = text.split(' ')
+
     for word in list_of_words:
         # If the word is in the list of stop words, continue to the next instance
         if word.lower() in stop_words:
             continue
-        occurence_dict[word] += 1
+        occurence_dict[word.lower()] += 1
 
     return occurence_dict
 
@@ -200,7 +201,7 @@ if __name__ == "__main__":
 
     text = "This is a sample text. This text contains sample words."
     stop_words = ["is", "a", "this"]
-    #print(count_word_occurrences(text=text, stop_words=stop_words))
+    print(count_word_occurrences("test", ["and", 1]))
 
     dataset = [
         "almond", "apple", "apricot", "banana", "blueberry", "cantaloupe", "cherry", "coconut", "cranberry", "date", "dragonfruit",
@@ -226,7 +227,7 @@ if __name__ == "__main__":
 
     int_list = [_item for _item in range(0, 50)]
     
-    #print(count_evens(int_list))
+    print(count_evens(int_list))
     random_int_list = random.sample(int_list, len(int_list))
     #print(centered_average(random_int_list))
     #print(has22([1, 5, 9, 1, 2, 1, 7, 6, 2, 2, 98]))
