@@ -23,7 +23,7 @@ def validation(_item=None, _list=None, min_length=1, _type=None):
 # Exercise 1: calculate the average value of a key in a dictionary. The values for a certain key are given in a list
 # Input: A dictionary with a key and a list of values (type: list with float)
 # Output: A dictionary with a key and the average of the list as value (type: float)
-def calculate_average_price(products_dict :dict):
+def calculate_average_price(products_dict ):
     for item in products_dict:
         total_of_values = 0           
         for value in products_dict[item]:
@@ -105,7 +105,7 @@ def binary_search(ordered_list , item_to_search):
 
 
 # Exercise 4: Takes a dictionary with as key a string representing the name of a city and as value a list of tempratures as floats observed in the respective city over a period of time. The function should calculate the amplitude of temperature variation and return a dict with as key the city name and as value the amplitude (max difference) between temperatures in 1 digit decimals
-def amplitude_temperature(cities_temperature :dict):
+def amplitude_temperature(cities_temperature ):
     # Validation
     if len(cities_temperature) == 0: 
         print('Invalid argument. Check specifications.')
