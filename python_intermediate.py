@@ -89,6 +89,20 @@ def remove_duplicates(list_of_names :list):
     return duplicateless_list
 
 
+# Exercise 6: Check if the items of a list are of a certain type
+def check_type(list_of_items, required_type):
+    if not len(list_of_items) > 0:
+        return None
+    
+    for item in list_of_items:
+        if not isinstance(item, required_type):
+            txt = 'Item ’ {item} ’ (of index {index})is of type {_type} while the required type is {req_type}'
+            print(txt.format(item=item, index=list_of_items.index(item), _type=type(item), req_type=required_type ))
+            return False
+    return True
+
+
+
 # Exercise 8: Return a tuple with the word with the least vowels from a list of words and how many vowels that word has
 # Input: A list (type: list) of words (type: string)
 # Output: A tuple containing the word (type: string) and the amount of vowels (type integer)
@@ -139,7 +153,7 @@ if __name__ == "__main__":
                   "Let", "me", "tell", "you", "a", "secret:", 93, "'vo"]
     print(linear_search(items_list, 93))
     print(reverse_list([1, 2, 3, 4, 5]))
-    
+    print(check_type([1, 3, 'a', 4], int))
     items_list.remove(93)
     print(remove_duplicates(["there", "are", "are", "are", "duplicates", "here", "and", "there"]))
     print(get_least_vowels_word(items_list))
