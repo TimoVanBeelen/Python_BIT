@@ -102,6 +102,22 @@ def check_type(list_of_items, required_type):
     return True
 
 
+# Exercise 7: Take a list of words and find the longest word. Return the word and length as a tuple. The list must have at least 2 elements and the elements must be of type sting
+def get_longest_word(list_of_words):
+    if not len(list_of_words) >= 2:
+        print('Invalid Argument. List length must be >= 2, only strings allowed.')
+        return None
+    for item in list_of_words:
+        if not isinstance(item, str):
+            print('Invalid Argument. List length must be >= 2, only strings allowed.')
+            return None
+    
+    longest_word = ''
+    for word in list_of_words:
+        if len(word) > len(longest_word): longest_word = word
+    
+    return (longest_word, len(longest_word))
+
 
 # Exercise 8: Return a tuple with the word with the least vowels from a list of words and how many vowels that word has
 # Input: A list (type: list) of words (type: string)
@@ -154,6 +170,7 @@ if __name__ == "__main__":
     print(linear_search(items_list, 93))
     print(reverse_list([1, 2, 3, 4, 5]))
     print(check_type([1, 3, 'a', 4], int))
+    print(get_longest_word(['Invalid','Argument', 1,'length','must', 'be', 'only', 'strings', 'allowed']))
     items_list.remove(93)
     print(remove_duplicates(["there", "are", "are", "are", "duplicates", "here", "and", "there"]))
     print(get_least_vowels_word(items_list))
