@@ -55,6 +55,19 @@ def reverse_list(list_of_ints):
     return list_of_ints[::-1]
 
 
+# Exercise 4: Run through a list of unordered ints and return the max value
+def find_max(list_of_ints):
+    if not len(list_of_ints) > 0:
+        print('Invalid argument: list_of_int must be non-empty. Only int allowed.')
+        return None
+    for item in list_of_ints:
+        if not isinstance(item, int):
+            print('Invalid argument: list_of_int must be non-empty. Only int allowed.')
+            return None
+    
+    return max(list_of_ints)
+
+
 # Exercise 5: Remove duplicates from a list of names
 # Input: An unordened list (type: list) containing string elements
 # Output: A list (type: list) with the same strings but with duplicates removed
