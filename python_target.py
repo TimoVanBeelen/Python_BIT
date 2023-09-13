@@ -57,6 +57,8 @@ def count_word_occurrences(text , stop_words ):
     occurence_dict = defaultdict(int)
     text = text.replace('.', '')
     list_of_words = text.split(' ')
+    for word in stop_words:
+        stop_words[stop_words.index(word)] = word.lower()
 
     for word in list_of_words:
         # If the word is in the list of stop words, continue to the next instance
