@@ -44,7 +44,7 @@ def calculate_average_price(products_dict :dict):
 # Exercise 2: Take in a text and count the amount a word occurs in the text, except stop words. It should be case insensitive
 # Input: text (type str) with words and a list of stop words
 # Output: A dictionary with as key the word and as value the amount of occurences
-def count_word_occurrences(text :str, stop_words :list):
+def count_word_occurrences(text , stop_words ):
     # Validation
     if not isinstance(text, str) or len(text) == 0 or len(stop_words) == 0:
         print('argument text must be a non-empty string')
@@ -71,7 +71,7 @@ def count_word_occurrences(text :str, stop_words :list):
 #             If the searched item is found, then the function returns its index in the list. Otherwise it returns -1
 # Input: An ordered list and an item to search (type: any)
 # Output: The index of the item in the list or -1 for when it is not found
-def binary_search(ordered_list :list, item_to_search):
+def binary_search(ordered_list , item_to_search):
     # Validation
     if len(ordered_list) == 0:
         print('Invalid Argument: ordered_list must be non-empty')
@@ -127,7 +127,7 @@ def amplitude_temperature(cities_temperature :dict):
     
 
 # Exercise 5: A function that returns the count of even numbers in a list of ints
-def count_evens(list_of_ints :list):
+def count_evens(list_of_ints ):
     # Validation
     if not validation(_list=list_of_ints, _type=int):
         print('Invalid argument. Check specifications.')
@@ -141,7 +141,7 @@ def count_evens(list_of_ints :list):
 
 
 # Exercise 6: take a list of ints and return the mean average of the values, ignoring the highest and lowest in the list. The list must be at least of length 4
-def centered_average(list_of_ints :list):
+def centered_average(list_of_ints ):
     if not validation(_list=list_of_ints, _type=int, min_length=4):
         print('Invalid argument. Check specifications.')
         return None
@@ -153,7 +153,7 @@ def centered_average(list_of_ints :list):
 
 
 # Exercise 7: Take a list of integers and return True if the list contains at least one element with value 2 followed by another element with value 2
-def has22(list_of_ints :list):
+def has22(list_of_ints ):
     prev_item = 0   # Set a variable to recall the last item value
     for _item in list_of_ints:
         if _item == 2 and prev_item == 2:
@@ -201,7 +201,7 @@ if __name__ == "__main__":
 
     text = "This is a sample text. This text contains sample words."
     stop_words = ["is", "a", "this"]
-    print(count_word_occurrences("test", ["and", 1]))
+    print(count_word_occurrences("This is a this sample sample text to test code", ["coDE", "SAMPLe"]))
 
     dataset = [
         "almond", "apple", "apricot", "banana", "blueberry", "cantaloupe", "cherry", "coconut", "cranberry", "date", "dragonfruit",
