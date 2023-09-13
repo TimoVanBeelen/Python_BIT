@@ -18,14 +18,13 @@ def fancy_hello_world():
 #4
 # Timo: Laatste lijn (de print) is unreachable -> vs code werkt dan toch iets makkelijker dan terminals en standaard text editors
 def grade_is_valid(grade):
-	if grade >= 1 or grade <= 10:
+	if grade >= 1 and grade <= 10:
 		return True
 	else:
 		return False
-	print(grade_is_valid(grade))
 #5
 def test_is_valid(test):
-	if isinstance(test,int) and (test >= 1 or test <= 3):
+	if isinstance(test,int) and (test >= 1 and test <= 3):
 		return True
 	else: return False
 #6
@@ -40,7 +39,7 @@ def is_the_same(message1, message2):
 #7
 # Alfonso, kijk hier nog even naar -> iets met de variable type die je er in gooit bij de case statements
 def month_name(month_number):
-	if isinstance(month_number, int) and (month_number >= 1 or month_number <= 12):
+	if isinstance(month_number, int) and (month_number >= 1 and month_number <= 12):
 		if month_number == 1:
 			return "January"
 		elif month_number == 2:
@@ -68,7 +67,7 @@ def month_name(month_number):
 	
 	else: print("Invalid argument. The month_number must be an int value between 1 and 12")
 	
-#8
+#8 -> Weekday en vacation zijn beiden boolean statements, dus dit werkt niet
 def sleep_at_home(weekday, vacation):
 	if isinstance(weekday,int):
 		if (weekday <= 5 or weekday >= 1):
@@ -80,21 +79,16 @@ def sleep_at_home(weekday, vacation):
 		else: return None
 	else: return None
 
-#9 
+#9 -> Je hoeft niet een bool naar True te vergelijken, als iets niet de goede type heeft dan werkt 'not isinstance()' al als gate
 def format_name(name, surname):
-	if not (isinstance(name,str) == True and len(name) >= 2):
-		print("inv_name =\"Invalid argument. Name must be string (len>= 2).\"")
-		if not (isinstance(surname,str) == True and len(surname) >= 2):
-			print("inv_surname =\"Invalid argument. Name must be string (len>= 2).\"")
+	if not (isinstance(name,str) and len(name) >= 2):
+		print("Invalid argument. Name must be string (len>= 2).\"")
+		if not (isinstance(surname,str) == True and len(surname) >= 2): # Deze if statement heeft geen zin als je beide keren None returnt
+			print("Invalid argument. Surame must be string (len>= 2).\"")
 			return None
-		else: return None
-	elif not (isinstance(name,str) == True and len(name) >= 2):
-		print("inv_surname =\"Invalid argument. Name must be string (len>= 2).\"")
-		if not (isinstance(surname,str) == True and len(surname) >= 2):
-			print("inv_name =\"Invalid argument. Name must be string (len>= 2).\"")
-			return None
-		else: return None
-	else: x = name(0) + "." + " " + surname + ")" + name + ")"
+	return name[0] + "." + " " + surname + " (" + name + ")" # Gebruik [] voor index pass naar list, niet ()
+# Je had een variabele gelijk gesteld aan hetgeen dat returned diende te worden maar nooit return gezegd. Vergeet de return statement niet
+# Heb deze code een beetje opgeschoond. Kijk vooral nog even wat veranderd is. Er hoefde dus niet twee verschillende error messages te komen
 
 
 #10
@@ -112,12 +106,12 @@ def calculate_ics_grade(grade_python, grade_oscn, grade_java, test_to_add_bonus,
 #check if bp can be applied to grade:
 		if t1 <=9.5 or t1 >= 5:
 #no partial bonus:
-			if bonus_is_full == True:
-				Final_grade = (0.25*t1+0.5) + 0.25*t2 +0.5*t3
+			if bonus_is_full:
+				Final_grade = 0.25*(t1+0.5) + 0.25*t2 +0.5*t3
 				return Final_grade
 #partial bonus:
 			else: 
-				Final_grade = (0.25*t1+0.25) + 0.25*t2 +0.5*t3
+				Final_grade = 0.25*(t1+0.25) + 0.25*t2 +0.5*t3
 				return Final_grade
 # test grade not eligible for bp:
 		else: 
@@ -133,12 +127,16 @@ def calculate_ics_grade(grade_python, grade_oscn, grade_java, test_to_add_bonus,
 				return None
 #no partial bonus = apply to t3 grade
 			else:
-				Final_grade = 0.25*t1 + 0.25*t2 +(0.5*t3+0.5)
+				Final_grade = 0.25*t1 + 0.25*t2 +0.5*(t3+0.5)
 				return Final_grade
 # t3 not eligible for bp:
 		else: 
 			print("Test grade is not eligible to bonus points. Eligible grades are >=5 and <=9.5.")
 			return None
 # if bp is not 0, 1 or 3:
-	else: print("Invalid argument test_to_add_bonus. Accepted values are 0, 1 or 3.")
-	return None
+	else: 
+		print("Invalid argument test_to_add_bonus. Accepted values are 0, 1 or 3.")
+		return None
+# Hier zat nog een klein wiskundig foutje in. Je moet eerst de bonus optellen bij het cijfer en dan pas vermenigvuldigen met hoevaak het meetelt
+
+print(calculate_ics_grade(6, 7, 8, 1, False))
