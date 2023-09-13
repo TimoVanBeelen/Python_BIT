@@ -42,6 +42,19 @@ def linear_search(list_of_items :list, item):
         return -1
 
 
+# Exercise 3: reverse a list of integers
+def reverse_list(list_of_ints):
+    if not len(list_of_ints) >= 2:
+        print('Invalid argument. It must be a list of int (len >= 2)')
+        return None
+    for item in list_of_ints:
+        if not isinstance(item, int):
+            print('Invalid argument. It must be a list of int (len >= 2)')
+            return None
+    
+    return list_of_ints[::-1]
+
+
 # Exercise 5: Remove duplicates from a list of names
 # Input: An unordened list (type: list) containing string elements
 # Output: A list (type: list) with the same strings but with duplicates removed
@@ -112,6 +125,7 @@ if __name__ == "__main__":
     items_list = ["Hey", "there", "I", "did", "not", "see", "you", "there", "!", 
                   "Let", "me", "tell", "you", "a", "secret:", 93, "'vo"]
     print(linear_search(items_list, 93))
+    print(reverse_list([1, 2, 3, 4, 5]))
     
     items_list.remove(93)
     print(remove_duplicates(["there", "are", "are", "are", "duplicates", "here", "and", "there"]))
