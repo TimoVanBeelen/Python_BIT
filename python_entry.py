@@ -27,6 +27,7 @@ def grade_is_valid(grade):
 def test_is_valid(test):
 	if isinstance(test,int) and (test >= 1 or test <= 3):
 		return True
+	else: return False
 #6
 # Timo: eens, maar vervangen van '==' met 'is' zou meer "pythonic" zijn
 def is_the_same(message1, message2):
@@ -39,32 +40,31 @@ def is_the_same(message1, message2):
 #7
 # Alfonso, kijk hier nog even naar -> iets met de variable type die je er in gooit bij de case statements
 def month_name(month_number):
-	if isinstance(month_number, int) and (month_number >=1 or month_number <= 12):
-		match month_number:
-			case "1":
-				return "January"
-			case "2":
-				return "February"
-			case "3":
-				return "March"
-			case "4":
-				return "April"
-			case "5":
-				return "May"
-			case "6":
-				return "June"
-			case "7":
-				return "July"
-			case "8":
-				return "August"
-			case "9":
-				return "September"
-			case "10":
-				return "October"
-			case "11":
-				return "November"
-			case "12":
-				return "December"
+	if isinstance(month_number, int) and (month_number >= 1 or month_number <= 12):
+		if month_number == 1:
+			return "January"
+		elif month_number == 2:
+			return "February"
+		elif month_number == 3:
+			return "March"
+		elif month_number == 4:
+			return "April"
+		elif month_number == 5:
+			return "May"
+		elif month_number == 6:
+			return "June"
+		elif month_number == 7:
+			return "July"
+		elif month_number == 8:
+			return "August"
+		elif month_number == 9:
+			return "September"
+		elif month_number == 10:
+			return "October"
+		elif month_number == 11:
+			return "November"
+		elif month_number == 12:
+			return "December"
 	
 	else: print("Invalid argument. The month_number must be an int value between 1 and 12")
 	
@@ -95,6 +95,7 @@ def format_name(name, surname):
 			return None
 		else: return None
 	else: x = name(0) + "." + " " + surname + ")" + name + ")"
+
 
 #10
 def calculate_ics_grade(grade_python, grade_oscn, grade_java, test_to_add_bonus, bonus_is_full):
