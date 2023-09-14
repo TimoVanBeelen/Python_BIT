@@ -1,4 +1,6 @@
 # This is the start of the entry level coding stuff for BIT M1 (CS) done by T. van Beelen and A. Capitano
+import random
+import string
 
 #1
 def hello_world_python():
@@ -22,22 +24,19 @@ def grade_is_valid(grade):
 		return True
 	else:
 		return False
+  
 #5
 def test_is_valid(test):
 	if isinstance(test,int) and (test >= 1 and test <= 3):
 		return True
-	else: return False
 #6
-# Timo: eens, maar vervangen van '==' met 'is' zou meer "pythonic" zijn
 def is_the_same(message1, message2):
 	if isinstance(message1, str) and isinstance(message2, str):
-		if message1.casefold() == message2.casefold():
+		if message1.casefold() is message2.casefold():
 			return True
 		else: return False
-	
 	return None
 #7
-# Alfonso, kijk hier nog even naar -> iets met de variable type die je er in gooit bij de case statements
 def month_name(month_number):
 	if isinstance(month_number, int) and (month_number >= 1 and month_number <= 12):
 		if month_number == 1:
@@ -70,11 +69,11 @@ def month_name(month_number):
 #8 -> Weekday en vacation zijn beiden boolean statements, dus dit werkt niet
 def sleep_at_home(weekday, vacation):
 	if isinstance(weekday,int):
-		if (weekday <= 5 or weekday >= 1):
+		if (weekday <= 5 and weekday >= 1):
 			if vacation == False:
 				return True
 			else: return False
-		elif (weekday <= 7 or weekday >= 6):
+		elif (weekday <= 7 and weekday >= 6):
 			return False
 		else: return None
 	else: return None
@@ -89,7 +88,6 @@ def format_name(name, surname):
 	return name[0] + "." + " " + surname + " (" + name + ")" # Gebruik [] voor index pass naar list, niet ()
 # Je had een variabele gelijk gesteld aan hetgeen dat returned diende te worden maar nooit return gezegd. Vergeet de return statement niet
 # Heb deze code een beetje opgeschoond. Kijk vooral nog even wat veranderd is. Er hoefde dus niet twee verschillende error messages te komen
-
 
 #10
 def calculate_ics_grade(grade_python, grade_oscn, grade_java, test_to_add_bonus, bonus_is_full):
