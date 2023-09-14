@@ -42,6 +42,32 @@ def linear_search(list_of_items :list, item):
         return -1
 
 
+# Exercise 3: reverse a list of integers
+def reverse_list(list_of_ints):
+    if not len(list_of_ints) >= 2:
+        print('Invalid argument. It must be a list of int (len >= 2)')
+        return None
+    for item in list_of_ints:
+        if not isinstance(item, int):
+            print('Invalid argument. It must be a list of int (len >= 2)')
+            return None
+    
+    return list_of_ints[::-1]
+
+
+# Exercise 4: Run through a list of unordered ints and return the max value
+def find_max(list_of_ints):
+    if not len(list_of_ints) > 0:
+        print('Invalid argument: list_of_int must be non-empty. Only int allowed.')
+        return None
+    for item in list_of_ints:
+        if not isinstance(item, int):
+            print('Invalid argument: list_of_int must be non-empty. Only int allowed.')
+            return None
+    
+    return max(list_of_ints)
+
+
 # Exercise 5: Remove duplicates from a list of names
 # Input: An unordened list (type: list) containing string elements
 # Output: A list (type: list) with the same strings but with duplicates removed
@@ -61,6 +87,36 @@ def remove_duplicates(list_of_names :list):
             duplicateless_list.append(item)
 
     return duplicateless_list
+
+
+# Exercise 6: Check if the items of a list are of a certain type
+def check_type(list_of_items, required_type):
+    if not len(list_of_items) > 0:
+        return None
+    
+    for item in list_of_items:
+        if not isinstance(item, required_type):
+            txt = 'Item ’ {item} ’ (of index {index})is of type {_type} while the required type is {req_type}'
+            print(txt.format(item=item, index=list_of_items.index(item), _type=type(item), req_type=required_type ))
+            return False
+    return True
+
+
+# Exercise 7: Take a list of words and find the longest word. Return the word and length as a tuple. The list must have at least 2 elements and the elements must be of type sting
+def get_longest_word(list_of_words):
+    if not len(list_of_words) >= 2:
+        print('Invalid Argument. List length must be >= 2, only strings allowed.')
+        return None
+    for item in list_of_words:
+        if not isinstance(item, str):
+            print('Invalid Argument. List length must be >= 2, only strings allowed.')
+            return None
+    
+    longest_word = ''
+    for word in list_of_words:
+        if len(word) > len(longest_word): longest_word = word
+    
+    return (longest_word, len(longest_word))
 
 
 # Exercise 8: Return a tuple with the word with the least vowels from a list of words and how many vowels that word has
@@ -112,7 +168,9 @@ if __name__ == "__main__":
     items_list = ["Hey", "there", "I", "did", "not", "see", "you", "there", "!", 
                   "Let", "me", "tell", "you", "a", "secret:", 93, "'vo"]
     print(linear_search(items_list, 93))
-    
+    print(reverse_list([1, 2, 3, 4, 5]))
+    print(check_type([1, 3, 'a', 4], int))
+    print(get_longest_word(['Invalid','Argument', 1,'length','must', 'be', 'only', 'strings', 'allowed']))
     items_list.remove(93)
     print(remove_duplicates(["there", "are", "are", "are", "duplicates", "here", "and", "there"]))
     print(get_least_vowels_word(items_list))
